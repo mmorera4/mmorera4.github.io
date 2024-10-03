@@ -22,9 +22,9 @@ function draw() {
   vertex(180,40);//5è vertex
   vertex(260,40);//6è vertex
   vertex(280,80);//7è vertex
-  vertex(360,100-h);//8è vertex BOCA DALT !
+  vertex(360,100-h*6);//8è vertex BOCA DALT !
   vertex(280,120);//9è vertex BOCA DINS
-  vertex(360,140+h);//10è vertex BOCA BAIX !
+  vertex(360,140+h*6);//10è vertex BOCA BAIX !
   vertex(280,160);//11è vertex
   vertex(240,240);//12è vertex
   vertex(260,280);//13è vertex
