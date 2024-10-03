@@ -4,6 +4,7 @@ function setup() {
   createCanvas(400, 600);
   
   mic = new p5.AudioIn();
+  mic.start();
   
 /* el setup és la configuració i s'indica el tamany en pícsels del canvas o dibuix. que s'escriu amb lletra de camell o camelCanvas. La funció camelCase tindrà dos arguments o paràmetres que es posen entre parèntesis, el primer número és l'amplada de l'àrea de dibuix és a dir 400 pícsels, el segon número és l'alçada en pícsels, és a dir 600 pícsels. La funció setup només s'executa una vegada*/
 }
