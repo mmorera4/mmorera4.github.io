@@ -3,13 +3,14 @@ let mic;
 function setup() {
   createCanvas(400,400);
   mic = new p5.AudioIn();
+  mic.start();
 }
 
 function draw() {
   
   let vol = mic.getLevel();
   
-  let h = map (vol, 0, 1, 0, 300);
+  let h = map (vol, 0, 1, 0, 700);
   
   background(220);
   fill (255,255);
