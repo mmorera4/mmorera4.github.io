@@ -107,9 +107,19 @@
         }
 
         .video-container {
-            text-align: center;
-            margin: 20px auto;
+            max-width: 500px; /* Define un tamaño máximo para el contenedor */
+            margin: 20px auto; /* Centra el contenedor horizontalmente y agrega margen superior e inferior */
+            padding: 10px; /* Agrega espacio interno alrededor del video */
+            background-color: #111; /* Fondo oscuro (opcional) */
+            border-radius: 10px; /* Esquinas redondeadas */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Sombra para destacar el contenedor */
         }
+
+        .video-container video {
+            width: 100%; /* Asegura que el video ocupe todo el ancho del contenedor */
+            height: auto; /* Mantiene la proporción del video */
+        }
+
     </style>
 </head>
 <body>
