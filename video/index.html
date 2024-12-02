@@ -7,7 +7,7 @@
     <title>Web de Max</title>
     <style>
         body {
-            background-color: #111; /* Fons fosc per contrastar amb elements clars */
+            background-color: #111; /* Fons fosc */
             color: white;
             font-family: 'Arial', sans-serif;
             padding: 0;
@@ -31,8 +31,8 @@
             transition: color 0.3s ease;
         }
 
-        .navbar-brand span {
-            margin-left: 10px; /* Afegim un marge per separar el text del logo */
+        .navbar-brand img {
+            margin-right: 10px;
         }
 
         .navbar-toggler {
@@ -85,94 +85,6 @@
 
         .content-container h1 {
             text-align: center;
-            color: #12d1f3d5;
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            transition: color 0.3s ease;
-        }
-
-        .content-container p {
-            font-size: 1.2rem;
-            line-height: 1.6;
-            color: #e2e2e2;
-            transition: color 0.3s ease;
-        }
-
-        .content-container ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .content-container ul li {
-            margin-bottom: 0.5rem;
-            padding-left: 1rem;
-            border-left: 3px solid #12d1f3;
-            transition: transform 0.3s ease, border-color 0.3s ease;
-        }
-
-        .content-container ul li:hover {
-            transform: translateX(10px);
-            border-color: #12d1f3;
-        }
-
-        /* Animacions per la barra de navegació */
-        .navbar {
-            transition: background-color 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        /* Efecte animat al botó de navegació */
-        .navbar-toggler {
-            transition: transform 0.3s ease;
-        }
-
-        /* Efecte animat en passar per sobre dels elements de la barra de navegació */
-        .navbar-nav .nav-item:hover {
-            color: #12d1f3;
-            transform: scale(1.05);
-            transition: transform 0.3s ease, color 0.3s ease;
-        }
-
-        /* Animació per l'element del dropdown */
-        .dropdown:hover .dropdown-menu {
-            display: block;
-            transition: opacity 0.3s ease;
-        }
-
-        /* Centratge del text de la marca */
-        .navbar-center {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            text-align: center;
-        }
-
-        /* Estil per l'enllaç */
-        .navbar-center a {
-            color: #e2e2e2;
-            text-decoration: none;
-            font-weight: bold;
-            text-transform: uppercase;
-            font-size: 1.5rem;
-            transition: color 0.3s ease;
-        }
-
-        /* Canvi de color quan passa per sobre */
-        .navbar-center a:hover {
-            color: #12d1f3;
-        }
-        
-        .content-container {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 2rem;
-            background-color: #333;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-            transition: box-shadow 0.3s ease;
-        }
-
-        .content-container h1 {
-            text-align: center;
             color: #12d1f3;
             font-size: 2.5rem;
             margin-bottom: 1rem;
@@ -204,12 +116,10 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-            <img src="logo.png" alt="Logo" width="50" class="logo">
+        <a class="navbar-brand" href="https://mmorera4.github.io">
+            <img src="../logo.png" alt="Logo" width="50">
+            Web de Max
         </a>
-        <div class="navbar-center">
-            <a href="https://mmorera4.github.io" target="_blank">Web de Max</a> <!-- Enllaç clicable -->
-        </div>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -217,7 +127,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="mmorera4.github.io">Inici</a>
+                    <a class="nav-link" href="https://mmorera4.github.io">Inici</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="https://mmorera4.github.io/video/">My Coldplay Video</a>
