@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <title>Benvinguts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Omple subtil per a un toc modern */
+            background-color: #f8f9fa; /* Color de fons lleuger */
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px; /* Separació entre logo i text */
+        }
+
+        .logo {
+            width: 50px;
+            height: auto;
+            border-radius: 5px; /* Arrodoniment subtil */
+        }
+
+        .brand-text {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .navbar-nav .nav-link {
+            color: #555; /* Color dels enllaços */
+            transition: color 0.3s;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #007bff; /* Canvi de color en passar el ratolí */
+        }
+
+        .dropdown-menu {
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            transform: scale(0.95);
+            opacity: 0;
+        }
+
+        .dropdown-menu.show {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .content-container {
+            margin: 20px 10px; /* Marges laterals i superior */
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        ol {
+            padding-left: 20px; /* Millora de la visibilitat de la llista */
+            line-height: 1.6;
+            color: #555;
+        }
+
+        ol li {
+            margin-bottom: 10px; /* Separació entre elements */
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 10px;
+            background-color: #f8f9fa;
+            color: #777;
+            border-top: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img src="logo.png" alt="Logo" class="logo">
+            <span class="brand-text">Web d'alumne</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Inici</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Tema 1</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">Projectes</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="https://cvazquez04.github.io/aliment">Ecològic</a></li>
+                        <li><a class="dropdown-item" href="https://cvazquez04.github.io/coldplay">Coldplay</a></li>
+                        <li><a class="dropdown-item" href="https://cvazquez04.github.io/moonmusic">Moonmusic</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Tema 2</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Contingut principal -->
+<div class="content-container">
+    <h1>Passos per fer una figura animada</h1>
+    <ol>
+        <li>Descarregar Gimp, per exemple, des del Company Portal, i descarregar el Pivot Animator.</li>
+        <li>L'objectiu de Gimp és retallar les parts del nostre cantant (cap, braços, cames...) per després animar-les amb Gimp.</li>
+        <li>Busquem una imatge del nostre cantant preferit i li retallem les parts del cos.</li>
+        <li>Obrim la imatge amb **Fitxer > Obre**.</li>
+        <li>Cliquem al menú **Capes > Transparència > Afegeix canal alfa**.</li>
+    </ol>
+</div>
+
+<!-- Peu de pàgina -->
+<footer>
+    &copy; 2024 Web d'alumne. Tots els drets reservats.
+</footer>
+
+<!-- Scripts necessaris -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
