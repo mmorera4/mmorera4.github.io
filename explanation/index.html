@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <title>Explicació del codi</title>
+    <title>Web de Max</title>
     <style>
         body {
-            background-color: #111;
+            background-color: #111; /* Fons fosc per contrastar amb elements clars */
             color: white;
             font-family: 'Arial', sans-serif;
             padding: 0;
@@ -32,7 +32,7 @@
         }
 
         .navbar-brand span {
-            margin-left: 5px;
+            margin-left: 5px; /* Afegim un marge per separar el text del logo */
         }
 
         .navbar-toggler {
@@ -60,6 +60,7 @@
             background-color: #333;
             border: none;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease;
         }
 
         .dropdown-item {
@@ -79,19 +80,22 @@
             background-color: #333;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            transition: box-shadow 0.3s ease;
         }
 
         .content-container h1 {
             text-align: center;
-            color: #12d1f3;
+            color: #12d1f3d5;
             font-size: 2.5rem;
             margin-bottom: 1rem;
+            transition: color 0.3s ease;
         }
 
         .content-container p {
             font-size: 1.2rem;
             line-height: 1.6;
             color: #e2e2e2;
+            transition: color 0.3s ease;
         }
 
         .content-container ul {
@@ -111,27 +115,38 @@
             border-color: #12d1f3;
         }
 
-        pre {
-            background-color: #222;
-            color: #12d1f3;
-            padding: 1rem;
-            border-radius: 5px;
-            overflow-x: auto;
+        /* Animacions per la barra de navegació */
+        .navbar {
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
         }
 
-        code {
-            color: #e2e2e2;
+        /* Efecte animat al botó de navegació */
+        .navbar-toggler {
+            transition: transform 0.3s ease;
         }
+
+        /* Efecte animat en passar per sobre dels elements de la barra de navegació */
+        .navbar-nav .nav-item:hover {
+            color: #12d1f3;
+            transform: scale(1.05);
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        /* Animació per l'element del dropdown */
+        .dropdown:hover .dropdown-menu {
+            display: block;
+            transition: opacity 0.3s ease;
+        }
+        
     </style>
 </head>
 <body>
 
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-            <img src="logo.png" alt="Logo" width="50">
-            Explicació del codi
+        <a class="navbar-brand" href="https://mmorera4.github.io">
+            <img src="../logo.png" alt="Logo" width="50">
+            Web de Max
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -142,24 +157,29 @@
                 <li class="nav-item">
                     <a class="nav-link" href="https://mmorera4.github.io">Inici</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://mmorera4.github.io/video/">My Coldplay Video</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://mmorera4.github.io/explanation">Explanation</a>
+                </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Projectes P5js
-                    </a>
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">Projectes P5js</a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="https://mmorera4.github.io/cara">Cara Interactiva</a></li>
-                        <li><a class="dropdown-item" href="https://mmorera4.github.io/coldplay">Coldplay</a></li>
-                        <li><a class="dropdown-item" href="https://mmorera4.github.io/coldplay/monmusic">Coldplay Moonmusic</a></li>
+                        <li><a class="dropdown-item" href="https://mmorera4.github.io/coldplay/moonmusic">Coldplay Moonmusic</a></li>
                         <li><a class="dropdown-item" href="https://mmorera4.github.io/coldplay/monmusicsvg">Coldplay Moonmusic SVG</a></li>
                         <li><a class="dropdown-item" href="https://mmorera4.github.io/ocells">Ocells Interactius</a></li>
-                        <li><a class="dropdown-item" href="#">El meu Dibuix Interactiu</a></li>
                     </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://mmorera4.github.io/pivot">Animació</a>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
-
 <!-- Contingut principal -->
 <div class="content-container">
     <h1>Explicació del codi</h1>
