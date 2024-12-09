@@ -8,64 +8,47 @@
     <style>
         body {
             background-color: #111; /* Fons fosc per contrastar amb elements clars */
-            color: white;
+            color: #e2e2e2;
             font-family: 'Arial', sans-serif;
-            padding: 0;
             margin: 0;
+            padding: 0;
             transition: background-color 0.3s ease;
         }
 
         .navbar {
             background-color: #222;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 0.5rem 1rem;
-            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
         }
 
         .navbar-brand {
-            display: flex;
-            align-items: center;
-            color: #e2e2e2;
-            text-transform: uppercase;
-            font-weight: bold;
-            transition: color 0.3s ease;
-        }
-
-        .navbar-brand span {
-            margin-left: 5px; /* Afegim un marge per separar el text del logo */
-        }
-
-        .navbar-toggler {
-            border: none;
-            color: #e2e2e2;
-            background: none;
-            transition: color 0.3s ease;
-        }
-
-        .navbar-toggler:hover {
             color: #12d1f3;
+            font-weight: bold;
+            text-transform: uppercase;
         }
 
-        .navbar-nav .nav-link {
+        .navbar-brand img {
+            margin-right: 10px;
+        }
+
+        .nav-link {
             color: #ccc;
             margin: 0 0.5rem;
             transition: color 0.3s ease;
         }
 
-        .navbar-nav .nav-link:hover {
+        .nav-link:hover {
             color: #12d1f3;
         }
 
         .dropdown-menu {
             background-color: #333;
             border: none;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: box-shadow 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
         }
 
         .dropdown-item {
-            color: #ccc;
-            transition: color 0.3s ease;
+            color: #e2e2e2;
+            transition: color 0.3s ease, background-color 0.3s ease;
         }
 
         .dropdown-item:hover {
@@ -75,102 +58,54 @@
 
         .content-container {
             max-width: 800px;
-            margin: 20px auto;
+            margin: 30px auto;
             padding: 2rem;
             background-color: #333;
             border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-            transition: box-shadow 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
         }
 
         .content-container h1 {
             text-align: center;
-            color: #12d1f3d5;
+            color: #12d1f3;
             font-size: 2.5rem;
-            margin-bottom: 1rem;
-            transition: color 0.3s ease;
+            margin-bottom: 1.5rem;
         }
 
-        .content-container p {
-            font-size: 1.2rem;
-            line-height: 1.6;
+        .content-container ol {
             color: #e2e2e2;
-            transition: color 0.3s ease;
+            line-height: 1.8;
+            padding-left: 1.5rem;
         }
 
-        .content-container ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .content-container ul li {
-            margin-bottom: 0.5rem;
+        .content-container ol li {
+            margin-bottom: 1rem;
             padding-left: 1rem;
             border-left: 3px solid #12d1f3;
             transition: transform 0.3s ease, border-color 0.3s ease;
         }
 
-        .content-container ul li:hover {
+        .content-container ol li:hover {
             transform: translateX(10px);
             border-color: #12d1f3;
         }
 
-        /* Animacions per la barra de navegació */
-        .navbar {
-            transition: background-color 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        /* Efecte animat al botó de navegació */
-        .navbar-toggler {
-            transition: transform 0.3s ease;
-        }
-
-        /* Efecte animat en passar per sobre dels elements de la barra de navegació */
-        .navbar-nav .nav-item:hover {
-            color: #12d1f3;
-            transform: scale(1.05);
-            transition: transform 0.3s ease, color 0.3s ease;
-        }
-
-        /* Animació per l'element del dropdown */
-        .dropdown:hover .dropdown-menu {
-            display: block;
-            transition: opacity 0.3s ease;
-        }
-
-        h1 {
-            text-align: center;
-            margin-bottom: 20px;
-            color: #333;
-        }
-
-        ol {
-            padding-left: 20px; /* Millora de la visibilitat de la llista */
-            line-height: 1.6;
-            color: #555;
-        }
-
-        ol li {
-            margin-bottom: 10px; /* Separació entre elements */
-        }
-
         footer {
             text-align: center;
-            margin-top: 30px;
-            padding: 10px;
-            background-color: #f8f9fa;
-            color: #777;
-            border-top: 1px solid #ddd;
+            padding: 1rem;
+            background-color: #222;
+            color: #ccc;
+            margin-top: 2rem;
+            border-top: 1px solid #444;
         }
     </style>
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
         <a class="navbar-brand" href="https://mmorera4.github.io">
-            <img src="../logo.png" alt="Logo" width="50">
-            Animació
+            <img src="../logo.png" alt="Logo" width="50"> Animació
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -212,8 +147,8 @@
         <li>Descarregar Gimp, per exemple, des del Company Portal, i descarregar el Pivot Animator.</li>
         <li>L'objectiu de Gimp és retallar les parts del nostre cantant (cap, braços, cames...) per després animar-les amb Gimp.</li>
         <li>Busquem una imatge del nostre cantant preferit i li retallem les parts del cos.</li>
-        <li>Obrim la imatge amb **Fitxer > Obre**.</li>
-        <li>Cliquem al menú **Capes > Transparència > Afegeix canal alfa**.</li>
+        <li>Obrim la imatge amb <b>Fitxer > Obre</b>.</li>
+        <li>Cliquem al menú <b>Capes > Transparència > Afegeix canal alfa</b>.</li>
     </ol>
 </div>
 
