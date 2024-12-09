@@ -4,59 +4,138 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <title>Benvinguts</title>
+    <title>Animació d'imatge</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
+            background-color: #111; /* Fons fosc per contrastar amb elements clars */
+            color: white;
+            font-family: 'Arial', sans-serif;
             padding: 0;
+            margin: 0;
+            transition: background-color 0.3s ease;
         }
 
         .navbar {
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Omple subtil per a un toc modern */
-            background-color: #f8f9fa; /* Color de fons lleuger */
+            background-color: #222;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 0.5rem 1rem;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         .navbar-brand {
             display: flex;
             align-items: center;
-            gap: 10px; /* Separació entre logo i text */
-        }
-
-        .logo {
-            width: 50px;
-            height: auto;
-            border-radius: 5px; /* Arrodoniment subtil */
-        }
-
-        .brand-text {
-            font-size: 1.5rem;
+            color: #e2e2e2;
+            text-transform: uppercase;
             font-weight: bold;
-            color: #333;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-brand span {
+            margin-left: 5px; /* Afegim un marge per separar el text del logo */
+        }
+
+        .navbar-toggler {
+            border: none;
+            color: #e2e2e2;
+            background: none;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-toggler:hover {
+            color: #12d1f3;
         }
 
         .navbar-nav .nav-link {
-            color: #555; /* Color dels enllaços */
-            transition: color 0.3s;
+            color: #ccc;
+            margin: 0 0.5rem;
+            transition: color 0.3s ease;
         }
 
         .navbar-nav .nav-link:hover {
-            color: #007bff; /* Canvi de color en passar el ratolí */
+            color: #12d1f3;
         }
 
         .dropdown-menu {
-            transition: transform 0.3s ease, opacity 0.3s ease;
-            transform: scale(0.95);
-            opacity: 0;
+            background-color: #333;
+            border: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease;
         }
 
-        .dropdown-menu.show {
-            transform: scale(1);
-            opacity: 1;
+        .dropdown-item {
+            color: #ccc;
+            transition: color 0.3s ease;
+        }
+
+        .dropdown-item:hover {
+            color: #12d1f3;
+            background-color: #444;
         }
 
         .content-container {
-            margin: 20px 10px; /* Marges laterals i superior */
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 2rem;
+            background-color: #333;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .content-container h1 {
+            text-align: center;
+            color: #12d1f3d5;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .content-container p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #e2e2e2;
+            transition: color 0.3s ease;
+        }
+
+        .content-container ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .content-container ul li {
+            margin-bottom: 0.5rem;
+            padding-left: 1rem;
+            border-left: 3px solid #12d1f3;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .content-container ul li:hover {
+            transform: translateX(10px);
+            border-color: #12d1f3;
+        }
+
+        /* Animacions per la barra de navegació */
+        .navbar {
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Efecte animat al botó de navegació */
+        .navbar-toggler {
+            transition: transform 0.3s ease;
+        }
+
+        /* Efecte animat en passar per sobre dels elements de la barra de navegació */
+        .navbar-nav .nav-item:hover {
+            color: #12d1f3;
+            transform: scale(1.05);
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        /* Animació per l'element del dropdown */
+        .dropdown:hover .dropdown-menu {
+            display: block;
+            transition: opacity 0.3s ease;
         }
 
         h1 {
@@ -87,12 +166,11 @@
 </head>
 <body>
 
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-            <img src="logo.png" alt="Logo" class="logo">
-            <span class="brand-text">Web d'alumne</span>
+        <a class="navbar-brand" href="https://mmorera4.github.io">
+            <img src="../logo.png" alt="Logo" width="50">
+            Animació
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -101,22 +179,26 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Inici</a>
+                    <a class="nav-link" href="https://mmorera4.github.io">Inici</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Tema 1</a>
+                    <a class="nav-link" href="https://mmorera4.github.io/video/">My Coldplay Video</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://mmorera4.github.io/explanation">Explanation</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">Projectes</a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="https://cvazquez04.github.io/aliment">Ecològic</a></li>
-                        <li><a class="dropdown-item" href="https://cvazquez04.github.io/coldplay">Coldplay</a></li>
-                        <li><a class="dropdown-item" href="https://cvazquez04.github.io/moonmusic">Moonmusic</a></li>
+                        aria-expanded="false">Projectes P5js</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="https://mmorera4.github.io/cara">Cara Interactiva</a></li>
+                        <li><a class="dropdown-item" href="https://mmorera4.github.io/coldplay/moonmusic">Coldplay Moonmusic</a></li>
+                        <li><a class="dropdown-item" href="https://mmorera4.github.io/coldplay/monmusicsvg">Coldplay Moonmusic SVG</a></li>
+                        <li><a class="dropdown-item" href="https://mmorera4.github.io/ocells">Ocells Interactius</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Tema 2</a>
+                    <a class="nav-link" href="https://mmorera4.github.io/pivot">Animació</a>
                 </li>
             </ul>
         </div>
