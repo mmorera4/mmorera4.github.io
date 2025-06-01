@@ -69,8 +69,8 @@
       background-color: #d86a7d;
     }
 
-    #save-button {
-      margin-bottom: 2rem;
+    #save-button, #export-button {
+      margin-bottom: 1rem;
     }
 
     ul {
@@ -117,6 +117,7 @@
   </form>
 
   <button id="save-button">Desa les preguntes</button>
+  <button id="export-button">Exporta com HTML</button>
 
   <ul id="question-list"></ul>
 
@@ -125,6 +126,7 @@
     const input = document.getElementById('question-input');
     const list = document.getElementById('question-list');
     const saveButton = document.getElementById('save-button');
+    const exportButton = document.getElementById('export-button');
 
     function saveToLocalStorage() {
       const data = [];
@@ -138,41 +140,21 @@
 
     function loadFromLocalStorage() {
       const data = JSON.parse(localStorage.getItem('questions') || '[]');
-      data.forEach(item => {
-        const li = document.createElement('li');
-        const checkbox = document.createElement('input');
-        const span = document.createElement('span');
-
-        checkbox.type = 'checkbox';
-        span.textContent = item.text;
-
-        if (item.completed) {
-          li.classList.add('completed');
-          checkbox.checked = true;
-        }
-
-        checkbox.addEventListener('change', () => {
-          li.classList.toggle('completed', checkbox.checked);
-        });
-
-        li.appendChild(checkbox);
-        li.appendChild(span);
-        list.appendChild(li);
-      });
+      data.forEach(item => addQuestion(item.text, item.completed));
     }
 
-    form.addEventListener('submit', e => {
-      e.preventDefault();
-
-      const value = input.value.trim();
-      if (!value) return;
-
+    function addQuestion(text, completed = false) {
       const li = document.createElement('li');
       const checkbox = document.createElement('input');
       const span = document.createElement('span');
 
       checkbox.type = 'checkbox';
-      span.textContent = value;
+      span.textContent = text;
+
+      if (completed) {
+        li.classList.add('completed');
+        checkbox.checked = true;
+      }
 
       checkbox.addEventListener('change', () => {
         li.classList.toggle('completed', checkbox.checked);
@@ -181,15 +163,48 @@
       li.appendChild(checkbox);
       li.appendChild(span);
       list.appendChild(li);
+    }
 
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const value = input.value.trim();
+      if (!value) return;
+      addQuestion(value);
       input.value = '';
       input.disabled = true;
       setTimeout(() => input.disabled = false, 100);
     });
 
     saveButton.addEventListener('click', saveToLocalStorage);
-
     window.addEventListener('load', loadFromLocalStorage);
+
+    exportButton.addEventListener('click', () => {
+      const data = [];
+      list.querySelectorAll('li').forEach(li => {
+        const text = li.querySelector('span').textContent;
+        const completed = li.classList.contains('completed');
+        data.push({ text, completed });
+      });
+
+      const questionsHTML = data.map(item => {
+        return `<li class="${item.completed ? 'completed' : ''}"><input type="checkbox" ${item.completed ? 'checked' : ''} disabled><span>${item.text}</span></li>`;
+      }).join('\n');
+
+      const template = `<!DOCTYPE html>
+<html lang="ca">
+<head><meta charset="UTF-8"><title>Preguntes Exportades</title><style>body{background:#1a1a1a;color:#f2e9e4;font-family:sans-serif;padding:2rem;}li{background:#222;border-radius:12px;padding:1rem;margin:0.5rem 0;display:flex;align-items:center;gap:1rem;}li.completed span{text-decoration:line-through;color:#999;}input[type=checkbox]{transform:scale(1.2);accent-color:#e5989b;}</style></head>
+<body>
+<h1>Preguntes Exportades</h1>
+<ul>${questionsHTML}</ul>
+</body>
+</html>`;
+
+      const blob = new Blob([template], { type: 'text/html' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'preguntes.html';
+      a.click();
+    });
   </script>
 </body>
 </html>
