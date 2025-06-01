@@ -3,148 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Llistat de Preguntes Compartides</title>
-  <style>
-    body {
-      background-color: #1a1a1a;
-      color: #f2e9e4;
-      font-family: 'Segoe UI', sans-serif;
-      margin: 0;
-      padding: 2rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    h1 {
-      color: #e5989b;
-      font-weight: 300;
-      margin-bottom: 1rem;
-    }
-    form {
-      display: flex;
-      gap: 0.5rem;
-      margin-bottom: 1rem;
-      width: 100%;
-      max-width: 500px;
-    }
-    input[type="text"] {
-      flex: 1;
-      padding: 0.8rem;
-      border: 1px solid #e5989b55;
-      border-radius: 12px;
-      background-color: #222;
-      color: #f2e9e4;
-      outline: none;
-    }
-    button {
-      padding: 0.8rem 1.2rem;
-      background-color: #e5989b;
-      color: white;
-      border: none;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: all 0.3s ease-in-out;
-    }
-    button:hover {
-      background-color: #d86a7d;
-    }
-    ul {
-      list-style: none;
-      padding: 0;
-      width: 100%;
-      max-width: 500px;
-    }
-    li {
-      background: #222;
-      border: 1px solid #e5989b55;
-      border-radius: 16px;
-      padding: 1rem;
-      margin-bottom: 0.75rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      transition: all 0.3s ease-in-out;
-    }
-    li.completed span {
-      text-decoration: line-through;
-      color: #999;
-    }
-    input[type="checkbox"] {
-      transform: scale(1.2);
-      accent-color: #e5989b;
-    }
-  </style>
+  <title>Preguntes Compartides</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Temes per Parlar (Compartit)</h1>
-  <form id="question-form">
-    <input type="text" id="question-input" placeholder="Escriu una pregunta..." required />
+  <h1>Temes per Parlar</h1>
+  <form id="form">
+    <input type="text" id="input" placeholder="Escriu la pregunta..." required>
     <button type="submit">Afegir</button>
   </form>
-  <ul id="question-list"></ul>
+  <ul id="llista"></ul>
 
-  <!-- Firebase SDK -->
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
-
-  <script>
-    // Configuració de Firebase
-    const firebaseConfig = {
-      apiKey: "AIzaSyAdR5qi9HjIMRLs2VcXoTjZCgY4e_TZNdw",
-      authDomain: "preguntes-c5d57.firebaseapp.com",
-      projectId: "preguntes-c5d57",
-      storageBucket: "preguntes-c5d57.firebasestorage.app",
-      messagingSenderId: "902732242066",
-      appId: "1:902732242066:web:51507041b153ab3cedda4b",
-      measurementId: "G-C9SLYRLJM9"
-    };
-
-    const app = firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
-    const collectionRef = db.collection("preguntes");
-
-    const form = document.getElementById("question-form");
-    const input = document.getElementById("question-input");
-    const list = document.getElementById("question-list");
-
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const text = input.value.trim();
-      if (!text) return;
-      await collectionRef.add({
-        text,
-        completada: false,
-        timestamp: firebase.firestore.FieldValue.serverTimestamp()
-      });
-      input.value = "";
-    });
-
-    function renderPregunta(doc) {
-      const data = doc.data();
-      const li = document.createElement("li");
-      const checkbox = document.createElement("input");
-      checkbox.type = "checkbox";
-      checkbox.checked = data.completada;
-      const span = document.createElement("span");
-      span.textContent = data.text;
-
-      if (data.completada) li.classList.add("completed");
-
-      checkbox.addEventListener("change", async () => {
-        await collectionRef.doc(doc.id).update({
-          completada: checkbox.checked
-        });
-      });
-
-      li.appendChild(checkbox);
-      li.appendChild(span);
-      list.appendChild(li);
-    }
-
-    collectionRef.orderBy("timestamp").onSnapshot(snapshot => {
-      list.innerHTML = "";
-      snapshot.forEach(doc => renderPregunta(doc));
-    });
-  </script>
+  <!-- Firebase SDKs -->
+  <script type="module" src="firebase.js"></script>
 </body>
 </html>
