@@ -3,35 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Llistat de Preguntes</title>
+  <title>Llistat de Preguntes Compartides</title>
   <style>
-    :root {
-      --bg-color: #1a1a1a;
-      --text-color: #f2e9e4;
-      --accent: #e5989b;
-      --strike: #999;
-      --box-color: #222;
-      --border-color: #e5989b55;
-      --transition: all 0.3s ease-in-out;
-    }
-
     body {
+      background-color: #1a1a1a;
+      color: #f2e9e4;
       font-family: 'Segoe UI', sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-color);
       margin: 0;
       padding: 2rem;
       display: flex;
       flex-direction: column;
       align-items: center;
     }
-
     h1 {
-      color: var(--accent);
+      color: #e5989b;
       font-weight: 300;
       margin-bottom: 1rem;
     }
-
     form {
       display: flex;
       gap: 0.5rem;
@@ -39,125 +27,113 @@
       width: 100%;
       max-width: 500px;
     }
-
     input[type="text"] {
       flex: 1;
       padding: 0.8rem;
-      border: 1px solid var(--border-color);
+      border: 1px solid #e5989b55;
       border-radius: 12px;
-      background-color: var(--box-color);
-      color: var(--text-color);
+      background-color: #222;
+      color: #f2e9e4;
       outline: none;
-      transition: var(--transition);
     }
-
-    input[type="text"]:disabled {
-      opacity: 0.6;
-    }
-
     button {
       padding: 0.8rem 1.2rem;
-      background-color: var(--accent);
+      background-color: #e5989b;
       color: white;
       border: none;
       border-radius: 12px;
       cursor: pointer;
-      transition: var(--transition);
+      transition: all 0.3s ease-in-out;
     }
-
     button:hover {
       background-color: #d86a7d;
     }
-
-    #save-button, #export-button {
-      margin-bottom: 1rem;
-    }
-
     ul {
       list-style: none;
       padding: 0;
       width: 100%;
       max-width: 500px;
     }
-
     li {
-      background: var(--box-color);
-      border: 1px solid var(--border-color);
+      background: #222;
+      border: 1px solid #e5989b55;
       border-radius: 16px;
       padding: 1rem;
       margin-bottom: 0.75rem;
       display: flex;
       align-items: center;
       gap: 1rem;
-      transition: var(--transition);
-      animation: fadeIn 0.5s ease-in-out;
+      transition: all 0.3s ease-in-out;
     }
-
     li.completed span {
       text-decoration: line-through;
-      color: var(--strike);
+      color: #999;
     }
-
     input[type="checkbox"] {
       transform: scale(1.2);
-      accent-color: var(--accent);
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
+      accent-color: #e5989b;
     }
   </style>
 </head>
 <body>
-  <h1>Llistat de Temes per Parlar</h1>
+  <h1>Temes per Parlar (Compartit)</h1>
   <form id="question-form">
     <input type="text" id="question-input" placeholder="Escriu una pregunta..." required />
     <button type="submit">Afegir</button>
   </form>
-
-  <button id="save-button">Desa les preguntes</button>
-  <button id="export-button">Exporta com HTML</button>
-
   <ul id="question-list"></ul>
 
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
+
   <script>
-    const form = document.getElementById('question-form');
-    const input = document.getElementById('question-input');
-    const list = document.getElementById('question-list');
-    const saveButton = document.getElementById('save-button');
-    const exportButton = document.getElementById('export-button');
+    // Configuració de Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyAdR5qi9HjIMRLs2VcXoTjZCgY4e_TZNdw",
+      authDomain: "preguntes-c5d57.firebaseapp.com",
+      projectId: "preguntes-c5d57",
+      storageBucket: "preguntes-c5d57.firebasestorage.app",
+      messagingSenderId: "902732242066",
+      appId: "1:902732242066:web:51507041b153ab3cedda4b",
+      measurementId: "G-C9SLYRLJM9"
+    };
 
-    function saveToLocalStorage() {
-      const data = [];
-      list.querySelectorAll('li').forEach(li => {
-        const text = li.querySelector('span').textContent;
-        const completed = li.classList.contains('completed');
-        data.push({ text, completed });
+    const app = firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+    const collectionRef = db.collection("preguntes");
+
+    const form = document.getElementById("question-form");
+    const input = document.getElementById("question-input");
+    const list = document.getElementById("question-list");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const text = input.value.trim();
+      if (!text) return;
+      await collectionRef.add({
+        text,
+        completada: false,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
       });
-      localStorage.setItem('questions', JSON.stringify(data));
-    }
+      input.value = "";
+    });
 
-    function loadFromLocalStorage() {
-      const data = JSON.parse(localStorage.getItem('questions') || '[]');
-      data.forEach(item => addQuestion(item.text, item.completed));
-    }
+    function renderPregunta(doc) {
+      const data = doc.data();
+      const li = document.createElement("li");
+      const checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+      checkbox.checked = data.completada;
+      const span = document.createElement("span");
+      span.textContent = data.text;
 
-    function addQuestion(text, completed = false) {
-      const li = document.createElement('li');
-      const checkbox = document.createElement('input');
-      const span = document.createElement('span');
+      if (data.completada) li.classList.add("completed");
 
-      checkbox.type = 'checkbox';
-      span.textContent = text;
-
-      if (completed) {
-        li.classList.add('completed');
-        checkbox.checked = true;
-      }
-
-      checkbox.addEventListener('change', () => {
-        li.classList.toggle('completed', checkbox.checked);
+      checkbox.addEventListener("change", async () => {
+        await collectionRef.doc(doc.id).update({
+          completada: checkbox.checked
+        });
       });
 
       li.appendChild(checkbox);
@@ -165,45 +141,9 @@
       list.appendChild(li);
     }
 
-    form.addEventListener('submit', e => {
-      e.preventDefault();
-      const value = input.value.trim();
-      if (!value) return;
-      addQuestion(value);
-      input.value = '';
-      input.disabled = true;
-      setTimeout(() => input.disabled = false, 100);
-    });
-
-    saveButton.addEventListener('click', saveToLocalStorage);
-    window.addEventListener('load', loadFromLocalStorage);
-
-    exportButton.addEventListener('click', () => {
-      const data = [];
-      list.querySelectorAll('li').forEach(li => {
-        const text = li.querySelector('span').textContent;
-        const completed = li.classList.contains('completed');
-        data.push({ text, completed });
-      });
-
-      const questionsHTML = data.map(item => {
-        return `<li class="${item.completed ? 'completed' : ''}"><input type="checkbox" ${item.completed ? 'checked' : ''} disabled><span>${item.text}</span></li>`;
-      }).join('\n');
-
-      const template = `<!DOCTYPE html>
-<html lang="ca">
-<head><meta charset="UTF-8"><title>Preguntes Exportades</title><style>body{background:#1a1a1a;color:#f2e9e4;font-family:sans-serif;padding:2rem;}li{background:#222;border-radius:12px;padding:1rem;margin:0.5rem 0;display:flex;align-items:center;gap:1rem;}li.completed span{text-decoration:line-through;color:#999;}input[type=checkbox]{transform:scale(1.2);accent-color:#e5989b;}</style></head>
-<body>
-<h1>Preguntes Exportades</h1>
-<ul>${questionsHTML}</ul>
-</body>
-</html>`;
-
-      const blob = new Blob([template], { type: 'text/html' });
-      const a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
-      a.download = 'preguntes.html';
-      a.click();
+    collectionRef.orderBy("timestamp").onSnapshot(snapshot => {
+      list.innerHTML = "";
+      snapshot.forEach(doc => renderPregunta(doc));
     });
   </script>
 </body>
